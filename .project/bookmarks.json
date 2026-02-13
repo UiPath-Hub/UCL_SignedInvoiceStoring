@@ -1,0 +1,35 @@
+{
+  "Value": {
+    "Framework/GetTransactionData.xaml": [
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "79bd0d04-b564-4680-97f1-a64181cf864b",
+        "ActivityIdRef": "AddTransactionItem_1",
+        "ActivityId": "1.63",
+        "ActivityName": "Add Transaction Item",
+        "IsTransient": false
+      }
+    ],
+    "Framework/Process.xaml": [
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "2c5f94f0-7436-421c-b72b-fa4dde1bebdc",
+        "ActivityIdRef": "ExecuteQuery_1",
+        "ActivityId": "1.654",
+        "ActivityName": "Run Query Select PMS_INVOICE_LM",
+        "IsTransient": false
+      },
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "3a712712-3512-4950-ab65-c485862874ad",
+        "ActivityIdRef": "Assign_11",
+        "ActivityId": "1.392",
+        "ActivityName": "Assign strINVOICE_ID_ForUpdate normal case",
+        "IsTransient": false
+      }
+    ]
+  }
+}
