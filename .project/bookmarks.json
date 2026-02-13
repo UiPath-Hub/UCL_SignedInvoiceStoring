@@ -29,6 +29,15 @@
         "ActivityId": "1.392",
         "ActivityName": "Assign strINVOICE_ID_ForUpdate normal case",
         "IsTransient": false
+      },
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "6053e07c-b55c-427f-859a-ce424ff4a081",
+        "ActivityIdRef": "Assign_14",
+        "ActivityId": "1.201",
+        "ActivityName": "Assign",
+        "IsTransient": false
       }
     ]
   }
