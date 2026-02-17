@@ -135,7 +135,7 @@
       </ui:InvokeWorkflowFile>
       <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Convert_to_files_list - Invoke Workflow File (Workflow\Convert_to_files_list.xaml)" sap:VirtualizedContainerService.HintSize="416,177" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_6" UnSafe="False" WorkflowFileName="Workflow\Convert_to_files_list.xaml">
         <ui:InvokeWorkflowFile.Arguments>
-          <InArgument x:TypeArguments="x:String" x:Key="in_STR_FOLDER_PATH">[Config("STR_FOLDER_PATH").ToString]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="in_STR_FOLDER_PATH">[Config("strRawFilesFolderPath").ToString]</InArgument>
           <OutArgument x:TypeArguments="scg1:Stack(x:String)" x:Key="out_STACKFI_FILE_LIST">[stackCurrentNewWaitingFileForProcess]</OutArgument>
         </ui:InvokeWorkflowFile.Arguments>
       </ui:InvokeWorkflowFile>

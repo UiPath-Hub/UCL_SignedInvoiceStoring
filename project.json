@@ -42,7 +42,8 @@
     },
     "processOptions": {
       "ignoredFiles": [
-        "Tests/BuildTransactionFromLocal.xaml"
+        "Tests/BuildTransactionFromLocal.xaml",
+        "TestDev.xaml"
       ]
     },
     "fileInfoCollection": [

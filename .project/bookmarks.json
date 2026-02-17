@@ -17,7 +17,7 @@
         "Annotation": null,
         "Id": "2c5f94f0-7436-421c-b72b-fa4dde1bebdc",
         "ActivityIdRef": "ExecuteQuery_1",
-        "ActivityId": "1.654",
+        "ActivityId": "1.1391",
         "ActivityName": "Run Query Select PMS_INVOICE_LM",
         "IsTransient": false
       },
@@ -26,17 +26,62 @@
         "Annotation": null,
         "Id": "3a712712-3512-4950-ab65-c485862874ad",
         "ActivityIdRef": "Assign_11",
-        "ActivityId": "1.392",
+        "ActivityId": "1.1129",
         "ActivityName": "Assign strINVOICE_ID_ForUpdate normal case",
         "IsTransient": false
       },
       {
         "IsEnabled": true,
         "Annotation": null,
-        "Id": "6053e07c-b55c-427f-859a-ce424ff4a081",
-        "ActivityIdRef": "Assign_14",
-        "ActivityId": "1.201",
-        "ActivityName": "Assign",
+        "Id": "4b476ff6-bd28-459c-ba0c-2228b6c2f0ed",
+        "ActivityIdRef": "LogMessage_9",
+        "ActivityId": "1.740",
+        "ActivityName": "Log Message log_validInvoiceProcessing",
+        "IsTransient": false
+      },
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "3847815a-b310-40b2-8196-c3b42adde223",
+        "ActivityIdRef": "ExecuteQuery_3",
+        "ActivityId": "1.375",
+        "ActivityName": "Run Query Upload Invoice",
+        "IsTransient": false
+      },
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "c23c8348-144e-4a35-ac3d-e0aa0bfe3f5e",
+        "ActivityIdRef": "LogMessage_11",
+        "ActivityId": "1.352",
+        "ActivityName": "Log Message log_successfullyUpdatedToSQL",
+        "IsTransient": false
+      },
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "d7026c9f-7728-48b5-ae3c-417ab369f46d",
+        "ActivityIdRef": "Sequence_49",
+        "ActivityId": "1.129",
+        "ActivityName": "Move file",
+        "IsTransient": false
+      },
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "aa670c9e-a854-4443-9ed2-848db18a1aa5",
+        "ActivityIdRef": "Throw_9",
+        "ActivityId": "1.106",
+        "ActivityName": "Throw logE_UnexpectedQueryResult",
+        "IsTransient": false
+      },
+      {
+        "IsEnabled": true,
+        "Annotation": null,
+        "Id": "e01962fa-a308-4125-8d07-ac1af3a4f1c8",
+        "ActivityIdRef": "Throw_8",
+        "ActivityId": "1.63",
+        "ActivityName": "Throw logE_UnexpectedDiverseKey",
         "IsTransient": false
       }
     ]
