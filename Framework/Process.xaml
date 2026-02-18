@@ -146,7 +146,7 @@
       <AssemblyReference>UCL_SignedInvoiceStoring.Core</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1230,7856" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1230,8221" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strFilePath" />
     </Sequence.Variables>
@@ -201,7 +201,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="Check valid Invoice" sap:VirtualizedContainerService.HintSize="662,7378" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Check valid Invoice" sap:VirtualizedContainerService.HintSize="662,7743" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="intCurrentPageIndex" />
         <Variable x:TypeArguments="x:Boolean" Name="blFileExists" />
@@ -705,27 +705,33 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:InterruptibleWhile>
-      <Sequence DisplayName="Check Valid, Pack and Update to SQL" sap:VirtualizedContainerService.HintSize="628,4152" sap2010:WorkflowViewState.IdRef="Sequence_32">
+      <Sequence DisplayName="Check Valid, Pack and Update to SQL" sap:VirtualizedContainerService.HintSize="628,4683" sap2010:WorkflowViewState.IdRef="Sequence_32">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, sd:DataRow)" CurrentIndex="{x:Null}" DisplayName="For Each currentKeyValuePairOfTextAndDataRow" sap:VirtualizedContainerService.HintSize="594,4060" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dictInvoiceDetail]">
+        <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, sd:DataRow)" CurrentIndex="{x:Null}" DisplayName="For Each currentKeyValuePairOfTextAndDataRow" sap:VirtualizedContainerService.HintSize="594,4600" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dictInvoiceDetail]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, sd:DataRow)">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, sd:DataRow)" Name="currentKeyValuePairOfTextAndDataRow" />
               </ActivityAction.Argument>
-              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="592,3938" sap2010:WorkflowViewState.IdRef="Sequence_33">
+              <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="592,4478" sap2010:WorkflowViewState.IdRef="Sequence_33">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <If Condition="[currentKeyValuePairOfTextAndDataRow.Value( in_Config(&quot;strINVOICE_LM_STATUS_Column&quot;).ToString).ToString = in_Config(&quot;strInvoiceValidStatus&quot;).ToString]" sap:VirtualizedContainerService.HintSize="558,3878" sap2010:WorkflowViewState.IdRef="If_12">
+                <If Condition="[currentKeyValuePairOfTextAndDataRow.Value( in_Config(&quot;strINVOICE_LM_STATUS_Column&quot;).ToString).ToString = in_Config(&quot;strInvoiceValidStatus&quot;).ToString]" sap:VirtualizedContainerService.HintSize="558,4418" sap2010:WorkflowViewState.IdRef="If_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
                   <If.Then>
-                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="556,3658" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                    <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="556,4198" sap2010:WorkflowViewState.IdRef="Sequence_41">
                       <Sequence.Variables>
                         <Variable x:TypeArguments="x:String" Name="strUploadFileName" />
                       </Sequence.Variables>
@@ -736,13 +742,14 @@
                       </sap:WorkflowViewStateService.ViewState>
                       <ui:LogMessage DisplayName="Log Message log_validInvoiceProcessing" sap:VirtualizedContainerService.HintSize="522,175" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[in_Config(&quot;log_validInvoiceProcessing&quot;).ToString]" />
                       <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="522,175" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[currentKeyValuePairOfTextAndDataRow.Key]" />
-                      <If Condition="[dictInvoiceFileSetForInsert.Keys.Contains(currentKeyValuePairOfTextAndDataRow.Key)]" DisplayName="If Key exists" sap:VirtualizedContainerService.HintSize="522,3248" sap2010:WorkflowViewState.IdRef="If_13">
+                      <If Condition="[dictInvoiceFileSetForInsert.Keys.Contains(currentKeyValuePairOfTextAndDataRow.Key)]" DisplayName="If Key exists" sap:VirtualizedContainerService.HintSize="522,3788" sap2010:WorkflowViewState.IdRef="If_13">
                         <If.Then>
-                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="520,2944" sap2010:WorkflowViewState.IdRef="Sequence_43">
+                          <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="520,3484" sap2010:WorkflowViewState.IdRef="Sequence_43">
                             <Sequence.Variables>
                               <Variable x:TypeArguments="x:String" Name="strBase64File" />
                               <Variable x:TypeArguments="si:FileInfo" Name="fiUploadFile" />
                               <Variable x:TypeArguments="sd:DataTable" Name="dtQueryResult" />
+                              <Variable x:TypeArguments="x:String" Name="strQuery" />
                             </Sequence.Variables>
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -801,10 +808,24 @@
                                 <InArgument x:TypeArguments="x:String">[UCL_SignedInvoiceStoring.publicMethod.ConvertFileToBase64String(fiUploadFile)]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DataTable="[dtQueryResult]" DisplayName="Run Query Upload Invoice" ExistingDbConnection="[in_CON_SQLCONNECTION]" sap:VirtualizedContainerService.HintSize="486,147" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[in_Config(&quot;strQueryUploadInvoice&quot;).ToString]">
+                            <ui:ModifyText DisplayName="Modify Text" sap:VirtualizedContainerService.HintSize="486,540" sap2010:WorkflowViewState.IdRef="ModifyText_2" OutputText="[strQuery]" SourceText="[in_Config(&quot;strQueryUploadInvoice&quot;).ToString]">
+                              <ui:ModifyText.Body>
+                                <ActivityAction>
+                                  <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_50">
+                                    <sap:WorkflowViewStateService.ViewState>
+                                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                      </scg:Dictionary>
+                                    </sap:WorkflowViewStateService.ViewState>
+                                    <ucat:FindAndReplaceTextModification DisplayName="Find and replace text" sap:VirtualizedContainerService.HintSize="334,161" sap2010:WorkflowViewState.IdRef="FindAndReplaceTextModification_4" ReplaceText="[currentKeyValuePairOfTextAndDataRow.Key]" SearchText="$IN_INVOICE_ID$" />
+                                    <ucat:FindAndReplaceTextModification DisplayName="Find and replace text" sap:VirtualizedContainerService.HintSize="334,161" sap2010:WorkflowViewState.IdRef="FindAndReplaceTextModification_5" ReplaceText="[strBase64File]" SearchText="$IN_BASE64$" />
+                                  </Sequence>
+                                </ActivityAction>
+                              </ui:ModifyText.Body>
+                            </ui:ModifyText>
+                            <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DataTable="[dtQueryResult]" DisplayName="Run Query Upload Invoice" ExistingDbConnection="[in_CON_SQLCONNECTION]" sap:VirtualizedContainerService.HintSize="486,147" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[strQuery]">
                               <ui:ExecuteQuery.Parameters>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_BASE64">[strBase64File]</InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_INVOICE_ID">[currentKeyValuePairOfTextAndDataRow.Key]</InArgument>
+                                <scg:Dictionary x:TypeArguments="x:String, Argument" />
                               </ui:ExecuteQuery.Parameters>
                             </ui:ExecuteQuery>
                             <If Condition="[dtQueryResult.RowCount &gt; 0 AndAlso dtQueryResult.Rows(0)(&quot;RESULT_CODE&quot;).ToString = &quot;DONE&quot;]" sap:VirtualizedContainerService.HintSize="486,1650" sap2010:WorkflowViewState.IdRef="If_15">
@@ -896,7 +917,6 @@
           </ui:ForEach.Body>
         </ui:ForEach>
       </Sequence>
-      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="628,166" sap2010:WorkflowViewState.IdRef="LogMessage_2" Message="[&quot;Read&quot;]" />
     </Sequence>
   </Sequence>
 </Activity>
