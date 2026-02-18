@@ -146,7 +146,7 @@
       <AssemblyReference>UCL_SignedInvoiceStoring.Core</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1230,7397" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="1230,7856" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strFilePath" />
     </Sequence.Variables>
@@ -201,7 +201,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:LogMessage>
-    <Sequence DisplayName="Check valid Invoice" sap:VirtualizedContainerService.HintSize="662,6919" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Check valid Invoice" sap:VirtualizedContainerService.HintSize="662,7378" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="intCurrentPageIndex" />
         <Variable x:TypeArguments="x:Boolean" Name="blFileExists" />
@@ -250,7 +250,7 @@
         </If.Else>
       </If>
       <ui:GetFileInfoX DisplayName="Get File Info" FilePath="[strFilePath]" sap:VirtualizedContainerService.HintSize="628,167" sap2010:WorkflowViewState.IdRef="GetFileInfoX_1" Output="[fiCurrentProcessingFile]" />
-      <Sequence DisplayName="Check the processing cache folder" sap:VirtualizedContainerService.HintSize="628,482" sap2010:WorkflowViewState.IdRef="Sequence_14">
+      <Sequence DisplayName="Check the processing cache folder" sap:VirtualizedContainerService.HintSize="628,941" sap2010:WorkflowViewState.IdRef="Sequence_14">
         <Sequence.Variables>
           <Variable x:TypeArguments="x:Boolean" Name="blCacheFolderExists" />
         </Sequence.Variables>
@@ -260,7 +260,7 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <Assign sap:VirtualizedContainerService.HintSize="416,175" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign sap:VirtualizedContainerService.HintSize="452,175" sap2010:WorkflowViewState.IdRef="Assign_4">
           <Assign.To>
             <OutArgument x:TypeArguments="x:String">[strCacheFolderPath]</OutArgument>
           </Assign.To>
@@ -268,22 +268,22 @@
             <InArgument x:TypeArguments="x:String">[fiCurrentProcessingFile.Directory.FullName.TrimEnd(System.IO.Path.DirectorySeparatorChar)+System.IO.Path.DirectorySeparatorChar+in_TransactionItem.Reference]</InArgument>
           </Assign.Value>
         </Assign>
-        <ui:FolderExistsX DisplayName="Folder Exists" Exists="[blCacheFolderExists]" sap:VirtualizedContainerService.HintSize="416,167" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[strCacheFolderPath]" />
-        <If Condition="[not blCacheFolderExists]" DisplayName="If the cache folder does not exist, create a new one." sap:VirtualizedContainerService.HintSize="416,48" sap2010:WorkflowViewState.IdRef="If_4">
+        <ui:FolderExistsX DisplayName="Folder Exists" Exists="[blCacheFolderExists]" sap:VirtualizedContainerService.HintSize="452,167" sap2010:WorkflowViewState.IdRef="FolderExistsX_1" Path="[strCacheFolderPath]" />
+        <If Condition="[blCacheFolderExists]" DisplayName="If the cache folder exists, delete all" sap:VirtualizedContainerService.HintSize="452,393" sap2010:WorkflowViewState.IdRef="If_4">
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
               <x:Boolean x:Key="IsPinned">False</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
           <If.Then>
-            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,174" sap2010:WorkflowViewState.IdRef="Sequence_10">
+            <Sequence DisplayName="Then" sap:VirtualizedContainerService.HintSize="450,164" sap2010:WorkflowViewState.IdRef="Sequence_10">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Cache Folder" sap:VirtualizedContainerService.HintSize="416,114" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[strCacheFolderPath]" />
+              <ui:DeleteFolderX DisplayName="Delete Folder" sap:VirtualizedContainerService.HintSize="416,104" sap2010:WorkflowViewState.IdRef="DeleteFolderX_1" Path="[strCacheFolderPath]" Recursive="True" />
             </Sequence>
           </If.Then>
           <If.Else>
@@ -296,6 +296,7 @@
             </Sequence>
           </If.Else>
         </If>
+        <ui:CreateDirectory ContinueOnError="{x:Null}" Output="{x:Null}" DisplayName="Create Cache Folder" sap:VirtualizedContainerService.HintSize="452,114" sap2010:WorkflowViewState.IdRef="CreateDirectory_2" Path="[strCacheFolderPath]" />
       </Sequence>
       <upap:GetPDFPageCount DisplayName="Get PDF Page Count" FileName="[strFilePath]" sap:VirtualizedContainerService.HintSize="628,115" sap2010:WorkflowViewState.IdRef="GetPDFPageCount_1" PageCount="[intPageCount]" />
       <Assign sap:VirtualizedContainerService.HintSize="628,175" sap2010:WorkflowViewState.IdRef="Assign_5">
@@ -802,12 +803,8 @@
                             </Assign>
                             <ui:ExecuteQuery ContinueOnError="{x:Null}" TimeoutMS="{x:Null}" DataTable="[dtQueryResult]" DisplayName="Run Query Upload Invoice" ExistingDbConnection="[in_CON_SQLCONNECTION]" sap:VirtualizedContainerService.HintSize="486,147" sap2010:WorkflowViewState.IdRef="ExecuteQuery_3" Sql="[in_Config(&quot;strQueryUploadInvoice&quot;).ToString]">
                               <ui:ExecuteQuery.Parameters>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_BASE64">
-                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="strBase64File" />
-                                </InArgument>
-                                <InArgument x:TypeArguments="x:String" x:Key="IN_INVOICE_ID">
-                                  <VisualBasicValue x:TypeArguments="x:String" ExpressionText="currentKeyValuePairOfTextAndDataRow.Key" />
-                                </InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_BASE64">[strBase64File]</InArgument>
+                                <InArgument x:TypeArguments="x:String" x:Key="IN_INVOICE_ID">[currentKeyValuePairOfTextAndDataRow.Key]</InArgument>
                               </ui:ExecuteQuery.Parameters>
                             </ui:ExecuteQuery>
                             <If Condition="[dtQueryResult.RowCount &gt; 0 AndAlso dtQueryResult.Rows(0)(&quot;RESULT_CODE&quot;).ToString = &quot;DONE&quot;]" sap:VirtualizedContainerService.HintSize="486,1650" sap2010:WorkflowViewState.IdRef="If_15">
